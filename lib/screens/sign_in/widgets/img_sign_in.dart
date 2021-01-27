@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 /**
  * Created by Vinicius Budel on 27,Janeiro,2021
  */
-class ImgLogo extends StatelessWidget {
+class ImgSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 230),
+        margin: EdgeInsets.only(top: 40),
         child: Image.asset(
-          "assets/images/logo_mesa.png",
+          "assets/images/ic_login.png",
           fit: BoxFit.cover,
-          width: 116,
-          height: 101,
+          width: 120,
+          height: 119,
         ));
   }
 }
