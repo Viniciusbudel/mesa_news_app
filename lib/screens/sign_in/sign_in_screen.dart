@@ -61,7 +61,7 @@ class _SingInScreenState extends State<SingInScreen> {
                   ),
                 ),
               ),
-              BtnLogin(onClickLogin, false),
+              BtnLogin(onClickLogin, showProgress),
               BtnLoginFacebook(onClickLoginFacebook, false),
               SignupBtn()
             ],
@@ -72,7 +72,11 @@ class _SingInScreenState extends State<SingInScreen> {
   }
 
   Future<void> onClickLogin() async {
+
     if (_formKey.currentState.validate()) {
+      setState(() {
+        showProgress = true;
+      });
       String login = _controllerLogin.text;
       String password = _controllerPassword.text;
 
