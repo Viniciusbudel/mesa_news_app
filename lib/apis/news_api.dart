@@ -11,7 +11,7 @@ class NewsApi {
       String token = await Prefs.getString("token");
 
       String prefUrl = globals.strWebService;
-      String endpoint = '/v1/client/news';
+      String endpoint = '/v1/client/news?per_page=1000';
       var url = '$prefUrl$endpoint';
 
       Map<String, String> headers = {
@@ -41,7 +41,7 @@ class NewsApi {
       String token = await Prefs.getString("token");
 
       String prefUrl = globals.strWebService;
-      String endpoint = '/v1/client/news/highlights';
+      String endpoint = '/v1/client/news/highlights?per_page=1000';
       var url = '$prefUrl$endpoint';
 
       Map<String, String> headers = {

@@ -4,6 +4,8 @@ import 'package:mesa_news_app/blocs/news_bloc.dart';
 import 'package:mesa_news_app/components/text_error.dart';
 import 'package:mesa_news_app/constants/colors.dart';
 import 'package:mesa_news_app/models/news.dart';
+import 'package:mesa_news_app/screens/news/widgets/listview_highligths.dart';
+import 'package:mesa_news_app/screens/news/widgets/listview_news.dart';
 
 /**
  * Created by Vinicius Budel on 27,Janeiro,2021
@@ -54,11 +56,7 @@ class _NewsScreenState extends State<NewsScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
             ),
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(16, 16, 0, 0),
-            //height: 128,
-            child: _listHighlights(),
-          ),
+          _listHighlights(),
           Container(
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.fromLTRB(16, 40, 0, 0),
@@ -67,10 +65,7 @@ class _NewsScreenState extends State<NewsScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
             ),
           ),
-          Expanded(
-            child: Container(
-                margin: EdgeInsets.fromLTRB(16, 16, 0, 0), child: _list()),
-          ),
+          _list(),
         ],
       ),
     );
@@ -78,6 +73,7 @@ class _NewsScreenState extends State<NewsScreen> {
 
   _listHighlights() {
     return Container(
+      margin: EdgeInsets.fromLTRB(16, 16, 0, 0),
       height: 128,
       child: StreamBuilder(
         stream: _blocHighlight.stream,
@@ -93,59 +89,12 @@ class _NewsScreenState extends State<NewsScreen> {
           }
 
           List<News> newsList = snapshot.data;
-
+          newsList.sort((a, b) {
+            return a.publishedAt.compareTo(b.publishedAt);
+          });
           return RefreshIndicator(
             onRefresh: _onRefreshHighlights,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: newsList.length,
-              itemBuilder: (BuildContext context, int index) {
-                News news = newsList[index];
-
-                return Container(
-                  width: 317,
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Card(
-                          child: Image.network(
-                            news.imageUrl,
-                            width: 128,
-                            height: 128,
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          Container(
-                            margin: EdgeInsets.only(left: 8),
-                            width: 173,
-                            alignment: Alignment.topLeft,
-                            child: Expanded(
-                              child: Text(
-                                news.title,
-                                maxLines: 4,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Icon(Icons.favorite_border)
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
+            child: ListviewHighligths(newsList),
           );
         },
       ),
@@ -157,45 +106,34 @@ class _NewsScreenState extends State<NewsScreen> {
   }
 
   _list() {
-    return StreamBuilder(
-      stream: _bloc.stream,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return TextError("Não foi possível buscar as noticias");
-        }
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(16),
+        child: StreamBuilder(
+          stream: _bloc.stream,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return TextError("Não foi possível buscar as noticias");
+            }
 
-        if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        List<News> newsList = snapshot.data;
-
-        return RefreshIndicator(
-          onRefresh: _onRefreshHighlights,
-          child: ListView.builder(
-            itemCount: newsList.length,
-            shrinkWrap: true,
-            itemBuilder: (ctx, index) {
-              News news = newsList[index];
-              return Container(
-                height: 128,
-                child: Card(
-                  child: ListTile(
-                      leading: Image.network(
-                        news.imageUrl,
-                        width: 128,
-                        height: 128,
-                      ),
-                      title: Text(news.title),
-                      subtitle: Text(news.content)),
-                ),
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
               );
-            },
-          ),
-        );
-      },
+            }
+
+            List<News> newsList = snapshot.data;
+            newsList.sort((a, b) {
+              return a.publishedAt.compareTo(b.publishedAt);
+            });
+
+            return RefreshIndicator(
+              onRefresh: _onRefresh,
+              child: ListviewNews(newsList),
+            );
+          },
+        ),
+      ),
     );
   }
 
