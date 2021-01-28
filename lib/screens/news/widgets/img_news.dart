@@ -11,7 +11,7 @@ class ImgNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return news.imageUrl.isNotEmpty
+    return news.imageUrl != null
         ? Container(
             margin: EdgeInsets.only(top: 24),
             alignment: Alignment.centerLeft,

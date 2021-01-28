@@ -6,8 +6,10 @@ import 'package:mesa_news_app/models/news.dart';
  */
 class ListtileHighligths extends StatelessWidget {
   final News news;
+  final void Function() asyncFunc;
 
-  ListtileHighligths(this.news);
+  ListtileHighligths(this.news,this.asyncFunc);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,11 +34,22 @@ class ListtileHighligths extends StatelessWidget {
         Row(
           children: [
             Container(
-                margin: EdgeInsets.only(left: 8, top: 9),
-                child: Icon(Icons.favorite_border)),
+                margin: EdgeInsets.only(left: 8, top: 4),
+                child: IconButton(
+                  icon: news.favorite
+                      ? Icon(Icons.favorite)
+                      : Icon(Icons.favorite_border),
+                  onPressed: () {
+                    news.favorite = news.favorite ? true : false;
+
+                  },
+                )),
             Container(
                 margin: EdgeInsets.only(left: 8, top: 9),
-                child: Text("16 Horas atrás",style: TextStyle(fontSize: 13),)),
+                child: Text(
+                  "16 Horas atrás",
+                  style: TextStyle(fontSize: 13),
+                )),
           ],
         )
       ],

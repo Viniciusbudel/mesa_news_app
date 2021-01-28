@@ -14,7 +14,7 @@ class BtnLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(16,16,16,0),
+      margin: EdgeInsets.fromLTRB(16,16,16,40),
       width: double.infinity,
       child: RaisedButton(
         onPressed: asyncFunc,

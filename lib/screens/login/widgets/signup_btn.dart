@@ -8,7 +8,7 @@ class SignupBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 40),
+      margin: EdgeInsets.only(bottom: 32),
       child: GestureDetector(
         //onTap: () => push(context, CadastrarJogadorPage()),
         child: RichText(

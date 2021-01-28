@@ -30,12 +30,16 @@ class ListviewHighligths extends StatelessWidget {
             child: Row(
               children: [
                 ImgHighligths(news),
-                ListtileHighligths(news),
+                ListtileHighligths(news,onClickFav),
               ],
             ),
           ),
         );
       },
     );
+  }
+
+  void onClickFav() {
+
   }
 }

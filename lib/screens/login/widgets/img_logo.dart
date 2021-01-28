@@ -7,7 +7,7 @@ class ImgLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 230),
+        margin: EdgeInsets.only(top: 180),
         child: Image.asset(
           "assets/images/logo_mesa.png",
           fit: BoxFit.cover,

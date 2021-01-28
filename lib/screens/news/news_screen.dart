@@ -4,8 +4,10 @@ import 'package:mesa_news_app/blocs/news_bloc.dart';
 import 'package:mesa_news_app/components/text_error.dart';
 import 'package:mesa_news_app/constants/colors.dart';
 import 'package:mesa_news_app/models/news.dart';
+import 'package:mesa_news_app/screens/filter/filter_screen.dart';
 import 'package:mesa_news_app/screens/news/widgets/listview_highligths.dart';
 import 'package:mesa_news_app/screens/news/widgets/listview_news.dart';
+import 'package:mesa_news_app/utils/nav.dart';
 
 /**
  * Created by Vinicius Budel on 27,Janeiro,2021
@@ -41,7 +43,10 @@ class _NewsScreenState extends State<NewsScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.dehaze),
-            onPressed: () {},
+            onPressed: () {
+              push(context, FilterScreen());
+
+            },
           )
         ],
       ),

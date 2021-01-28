@@ -7,7 +7,7 @@ class TxtLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 19),
+        margin: EdgeInsets.only(top: 19,bottom: 221),
         child: Text(
           "NEWS",
           style:

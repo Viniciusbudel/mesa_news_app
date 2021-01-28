@@ -7,6 +7,7 @@ class News {
   bool highlight;
   String url;
   String imageUrl;
+  bool favorite = false;
 
   News(
       {this.title,
@@ -16,6 +17,7 @@ class News {
         this.publishedAt,
         this.highlight,
         this.url,
+        this.favorite,
         this.imageUrl});
 
   News.fromJson(Map<String, dynamic> json) {
