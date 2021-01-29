@@ -16,31 +16,26 @@ class ListtileNews extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: 11),
-          alignment: Alignment.topLeft,
-          child: Expanded(
-            child: Text(
-              news.title,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
+          child: Text(
+            news.title,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
         Container(
           margin: EdgeInsets.only(top: 8),
           alignment: Alignment.topLeft,
-          child: Expanded(
-            child: Text(
-              news.description,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-              ),
+          child: Text(
+            news.description,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),

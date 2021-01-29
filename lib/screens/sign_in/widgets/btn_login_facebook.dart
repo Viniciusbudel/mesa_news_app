@@ -13,7 +13,7 @@ class BtnLoginFacebook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(16,134,16,0),
+      margin: EdgeInsets.fromLTRB(16,80,16,0),
       width: double.infinity,
       child: RaisedButton(
         onPressed: asyncFunc,

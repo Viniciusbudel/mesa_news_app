@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mesa_news_app/apis/sign_up_api.dart';
 import 'package:mesa_news_app/components/custom_dialog.dart';
 import 'package:mesa_news_app/components/custom_text_field.dart';
 import 'package:mesa_news_app/constants/colors.dart';
+import 'package:mesa_news_app/constants/styles.dart';
 import 'package:mesa_news_app/screens/login/login_screen.dart';
 import 'package:mesa_news_app/screens/news/news_screen.dart';
 import 'package:mesa_news_app/screens/sign_up/widgets/btn_cadastrar.dart';
@@ -24,6 +26,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _controllerPassword = TextEditingController();
   final _controllerConfirmPassword = TextEditingController();
   final _controllerBirthDate = TextEditingController();
+
+  DateTime selectedDate = DateTime.now();
+  DateTime dateNow = DateTime.now();
+  String data;
+  final f = new DateFormat('YYYY-mm-dd');
 
   bool showProgress = false;
 
@@ -63,11 +70,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "Confirmar Senha", "", _controllerConfirmPassword,
                         obscure: true),
                     SizedBox(height: 16),
-                    CustomTextField("Data de nascimento - opcional", "",
-                        _controllerBirthDate),
                   ],
                 ),
               ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(16, 24, 16, 0),
+              child: CustomTextField(
+                  "Data de nascimento - opcional", "", _controllerBirthDate),
             ),
             BtnCadastrar(onClickSignUp, showProgress),
             // BtnLoginFacebook(onClickLoginFacebook, false),
@@ -83,7 +93,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       setState(() {
         showProgress = true;
       });
-
 
       String login = _controllerEmail.text;
       String password = _controllerPassword.text;
@@ -102,12 +111,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             okBtnText: "Ok",
             cancelBtnText: "",
             okBtnFunction: () => Navigator.pop(context) //Fazer algo
-          //Fazer algo
-        );
+            //Fazer algo
+            );
       }
       setState(() {
         showProgress = false;
       });
     }
   }
+
+
 }

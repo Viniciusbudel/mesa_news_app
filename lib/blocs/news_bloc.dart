@@ -7,11 +7,25 @@ import 'package:mesa_news_app/utils/simple_bloc.dart';
 class NewsBloc extends SimpleBloc<List<News>> {
   Future<List<News>> getNews() async {
     try {
-      List<News> carros = await NewsApi.getNews();
+      List<News> news = await NewsApi.getNews();
 
-      add(carros);
+      add(news);
 
-      return carros;
+      return news;
+    } catch (e) {
+      addError(e);
+    }
+
+    return [];
+  }
+
+  Future<List<News>> getNewsByDate(String date) async {
+    try {
+      List<News> news = await NewsApi.getNewsByDate(date);
+
+      add(news);
+
+      return news;
     } catch (e) {
       addError(e);
     }
@@ -21,11 +35,11 @@ class NewsBloc extends SimpleBloc<List<News>> {
 
   Future<List<News>> getNewsHighlight() async {
     try {
-      List<News> carros = await NewsApi.getNewsHighlight();
+      List<News> news = await NewsApi.getNewsHighlight();
 
-      add(carros);
+      add(news);
 
-      return carros;
+      return news;
     } catch (e) {
       addError(e);
     }

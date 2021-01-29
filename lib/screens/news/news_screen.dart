@@ -5,6 +5,7 @@ import 'package:mesa_news_app/components/text_error.dart';
 import 'package:mesa_news_app/constants/colors.dart';
 import 'package:mesa_news_app/models/news.dart';
 import 'package:mesa_news_app/screens/filter/filter_screen.dart';
+import 'package:mesa_news_app/screens/login/login_screen.dart';
 import 'package:mesa_news_app/screens/news/widgets/listview_highligths.dart';
 import 'package:mesa_news_app/screens/news/widgets/listview_news.dart';
 import 'package:mesa_news_app/utils/nav.dart';
@@ -13,7 +14,9 @@ import 'package:mesa_news_app/utils/nav.dart';
  * Created by Vinicius Budel on 27,Janeiro,2021
  */
 class NewsScreen extends StatefulWidget {
-  NewsScreen({Key key}) : super(key: key);
+  String date = "";
+
+  NewsScreen({this.date});
 
   @override
   _NewsScreenState createState() => _NewsScreenState();
@@ -27,7 +30,11 @@ class _NewsScreenState extends State<NewsScreen> {
   void initState() {
     super.initState();
 
-    _bloc.getNews();
+    if (widget.date != null && widget.date.isNotEmpty) {
+      _bloc.getNewsByDate(widget.date);
+    } else {
+      _bloc.getNews();
+    }
     _blocHighlight.getNewsHighlight();
   }
 
@@ -35,6 +42,12 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading:           IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            push(context, LoginScreen());
+          },
+        ),
         backgroundColor: blueMain,
         title: Text(
           "Mesa News",
@@ -45,7 +58,6 @@ class _NewsScreenState extends State<NewsScreen> {
             icon: Icon(Icons.dehaze),
             onPressed: () {
               push(context, FilterScreen());
-
             },
           )
         ],

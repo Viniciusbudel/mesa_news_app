@@ -8,7 +8,7 @@ class ListtileHighligths extends StatelessWidget {
   final News news;
   final void Function() asyncFunc;
 
-  ListtileHighligths(this.news,this.asyncFunc);
+  ListtileHighligths(this.news, this.asyncFunc);
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +18,13 @@ class ListtileHighligths extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: 8),
           width: 173,
-          alignment: Alignment.topLeft,
-          child: Expanded(
-            child: Text(
-              news.title,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
+          child: Text(
+            news.title,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
@@ -41,7 +38,6 @@ class ListtileHighligths extends StatelessWidget {
                       : Icon(Icons.favorite_border),
                   onPressed: () {
                     news.favorite = news.favorite ? true : false;
-
                   },
                 )),
             Container(

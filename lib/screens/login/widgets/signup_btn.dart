@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mesa_news_app/constants/colors.dart';
+import 'package:mesa_news_app/screens/sign_up/sign_up_screen.dart';
+import 'package:mesa_news_app/utils/nav.dart';
 
 /**
  * Created by Vinicius Budel on 27,Janeiro,2021
@@ -10,7 +12,7 @@ class SignupBtn extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 32),
       child: GestureDetector(
-        //onTap: () => push(context, CadastrarJogadorPage()),
+        onTap: () => push(context, SignUpScreen()),
         child: RichText(
           text: TextSpan(
             children: [

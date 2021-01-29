@@ -22,7 +22,9 @@ class _NewsDiscScreenState extends State<NewsDiscScreen> {
         backgroundColor: blueMain,
         leading: IconButton(
           icon: Icon(Icons.close),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Column(
           children: [
